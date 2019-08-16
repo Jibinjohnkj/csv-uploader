@@ -1,0 +1,20 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'reports/index.css' %}">
+<script type="text/javascript" src="{% static 'reports/index.js' %}"></script>
+
+<h1></h1>
+{% if form %}
+<h2>Upload your products</h2>
+<form id="uploadForm" action="" enctype="multipart/form-data" method="post">
+  {{ form.non_field_errors }}
+  {{ form.file.errors }}
+  <div class="input-file-container">
+    {% csrf_token %}
+    <label tabindex="0" for="id_file" class="input-file-trigger">Select a file...</label>
+    <input class="input-file" name="file" id="id_file" type="file" accept=".csv" required>
+  </div>
+</form>
+{% else %}
+    <h2>{{ message }}</h2>
+{% endif %}
